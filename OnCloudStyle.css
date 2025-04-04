@@ -1,3 +1,4 @@
+/*************  ✨ Windsurf Command 🌟  *************/
 /* Global Styles */
 :root {
     --primary-color: #0d6efd;
@@ -102,6 +103,9 @@ body {
     height: 48px;
     border-radius: 8px;
     font-weight: 500;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
     margin-bottom: 20px;
     box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
     transition: var(--transition);
@@ -116,6 +120,7 @@ body {
     text-align: center;
     font-size: 14px;
     color: var(--secondary-color);
+    margin-top: 20px;
 }
 
 .form-switch a {
@@ -144,4 +149,7 @@ body {
 
 .sidebar-header {
     padding-bottom: 20px;
-    border
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+/*******  3c4913aa-1c3e-403e-8a94-1a17486fced6  *******/
