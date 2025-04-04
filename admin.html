@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudDrive Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="OnCloudStyle.css">
+    <style>
+        /* Admin-specific styles */
+        .admin-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .admin-sidebar {
+            width: 280px;
+            background-color: #1e1e2d;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .admin-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .admin-header {
+            background-color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-blue {
+            background-color: rgba(0,123,255,0.1);
+            color: #007bff;
+        }
+        
+        .stat-green {
+            background-color: rgba(40,167,69,0.1);
+            color: #28a745;
+        }
+        
+        .stat-orange {
+            background-color: rgba(255,193,7,0.1);
+            color: #ffc107;
+        }
+        
+        .stat-red {
+            background-color: rgba(220,53,69,0.1);
+            color: #dc3545;
+        }
+        
+        .admin-logo {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .admin-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .admin-menu-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .admin-menu-item:hover, .admin-menu-item.active {
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        
+        .chart-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .recent-activity-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Admin Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-logo">CloudDrive Admin</div>
+            <nav class="admin-menu">
+                <a href="#" class="admin-menu-item active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" class="admin-menu-item">
+                    <i class="fas fa-users"></i> Users
+                </a>
+                <a href="#" class="admin-menu-item">
+                    <i class="fas fa-file-alt"></i> Files
+                </a>
+                <a href="#" class="admin-menu-item">
+                    <i class="fas fa-folder"></i> Folders
+                </a>
+                <a href="#" class="admin-menu-item">
+                    <i class="fas fa-share-alt"></i> Shares
+                </a>
+                <a href="#" class="admin-menu-item">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a>
+                <a href="#" class="admin-menu-item">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="index.html" class="admin-menu-item">
+                    <i class="fas fa-arrow-left"></i> Back to App
+                </a>
+            </nav>
+        </div>
+
+        <!-- Admin Content -->
+        <div class="admin-content">
+            <!-- Admin Header -->
+            <div class="admin-header">
+                <h2>Dashboard</h2>
+                <div class="user-info">
+                    <span>Admin User</span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>1,254</h3>
+                        <p class="text-muted">Total Users</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-green">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>5,423</h3>
+                        <p class="text-muted">Total Files</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-orange">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <h3>1,089</h3>
+                        <p class="text-muted">Total Folders</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-red">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3>2,765</h3>
+                        <p class="text-muted">Total Shares</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and Graphs -->
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <div class="chart-container">
+                        <h4>Storage Usage Trend</h4>
+                        <canvas id="storageChart" height="250"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="chart-container">
+                        <h4>File Types Distribution</h4>
+                        <canvas id="fileTypesChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="chart-container">
+                        <h4>Recent Activity</h4>
+                        <div class="recent-activity">
+                            <div class="recent-activity-item">
+                                <div class="activity-icon stat-blue">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div>
+                                    <h6>New user registered</h6>
+                                    <small class="text-muted">5 minutes ago</small>
+                                </div>
+                            </div>
+                            <div class="recent-activity-item">
+                                <div class="activity-icon stat-green">
+                                    <i class="fas fa-file-upload"></i>
+                                </div>
+                                <div>
+                                    <h6>User uploaded a file</h6>
+                                    <small class="text-muted">15 minutes ago</small>
+                                </div>
+                            </div>
+                            <div class="recent-activity-item">
+                                <div class="activity-icon stat-orange">
+                                    <i class="fas fa-folder-plus"></i>
+                                </div>
+                                <div>
+                                    <h6>User created a new folder</h6>
+                                    <small class="text-muted">45 minutes ago</small>
+                                </div>
+                            </div>
+                            <div class="recent-activity-item">
+                                <div class="activity-icon stat-red">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <div>
+                                    <h6>User shared a file</h6>
+                                    <small class="text-muted">1 hour ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        // Storage Usage Chart
+        const storageCtx = document.getElementById('storageChart').getContext('2d');
+        const storageChart = new Chart(storageCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Storage Usage (GB)',
+                    data: [2.5, 3.2, 4.1, 5.3, 6.8, 7.4],
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // File Types Chart
+        const fileTypesCtx = document.getElementById('fileTypesChart').getContext('2d');
+        const fileTypesChart = new Chart(fileTypesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Documents', 'Images', 'Videos', 'Audio', 'Others'],
+                datasets: [{
+                    label: 'File Types',
+                    data: [42, 28, 15, 10, 5],
+                    backgroundColor: [
+                        'rgba(0, 123, 255, 0.7)',
+                        'rgba(40, 167, 69, 0.7)',
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(220, 53, 69, 0.7)',
+                        'rgba(108, 117, 125, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

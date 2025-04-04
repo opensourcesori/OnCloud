@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnCloud</title>
+    <link rel="stylesheet" href="OnCloudStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="OnCloudAppBase.py">
+</head>
+<body>
+    <!-- Login/Register Page -->
+    <div id="auth" class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="logo">OnCloud</h1>
+                <p class="auth-subtitle">Store, share, and collaborate on files</p>
+            </div>
+            <div id="loginForm" class="auth-form">
+                <h2>Sign In</h2>
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i></label>
+                    <input type="text" id="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="password" class="form-control" placeholder="Password">
+                </div>
+                <button class="btn btn-primary w-100" onclick="login()">Sign In</button>
+                <p class="form-switch">Don't have an account? <a href="#" onclick="toggleAuthForm()">Register</a></p>
+            </div>
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Create Account</h2>
+                <div class="form-group">
+                    <label for="regUsername"><i class="fas fa-user"></i></label>
+                    <input type="text" id="regUsername" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail"><i class="fas fa-envelope"></i></label>
+                    <input type="email" id="regEmail" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="Password">
+                </div>
+                <button class="btn btn-primary w-100" onclick="register()">Create Account</button>
+                <p class="form-switch">Already have an account? <a href="#" onclick="toggleAuthForm()">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">CloudDrive</h1>
+            </div>
+            <div class="create-btn-wrapper">
+                <button class="create-btn" onclick="showCreateOptions()">
+                    <i class="fas fa-plus"></i> Create
+                </button>
+                <div id="createOptions" class="create-options" style="display: none;">
+                    <div class="create-option" onclick="showUploadFileModal()">
+                        <i class="fas fa-file-upload"></i> Upload file
+                    </div>
+                    <div class="create-option" onclick="showCreateFolderModal()">
+                        <i class="fas fa-folder-plus"></i> New folder
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active" onclick="loadMyDrive()">
+                    <i class="fas fa-hard-drive"></i> My Drive
+                </a>
+                <a href="#" class="menu-item" onclick="loadStarred()">
+                    <i class="fas fa-star"></i> Starred
+                </a>
+                <a href="#" class="menu-item" onclick="loadShared()">
+                    <i class="fas fa-share-alt"></i> Shared
+                </a>
+                <hr class="sidebar-divider">
+                <a href="#" class="menu-item sidebar-storage">
+                    <i class="fas fa-database"></i> Storage
+                    <div class="storage-bar">
+                        <div class="storage-used" style="width: 30%;"></div>
+                    </div>
+                    <span class="storage-text">30% of 15 GB used</span>
+                </a>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-info" onclick="toggleUserOptions()">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span id="username-display">Username</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div id="userOptions" class="user-options" style="display: none;">
+                    <div class="user-option" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Sign out
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb" id="breadcrumbs">
+                        <li class="breadcrumb-item active" aria-current="page">My Drive</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Content Header -->
+            <div class="content-header">
+                <h2 id="currentView">My Drive</h2>
+                <div class="view-options">
+                    <div class="view-option active" onclick="toggleViewMode('grid')">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <div class="view-option" onclick="toggleViewMode('list')">
+                        <i class="fas fa-list"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files Container -->
+            <div class="files-container" id="filesContainer">
+                <!-- Grid view is default -->
+                <div id="gridView" class="grid-view">
+                    <!-- Files and folders will be loaded here -->
+                </div>
+                <!-- List view is hidden by default -->
+                <div id="listView
